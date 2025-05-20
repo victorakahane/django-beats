@@ -21,6 +21,6 @@ class ArtistAdmin(admin.ModelAdmin):
     """
     Admin interface for the Artist model.
     """
-    list_display = ('name', 'performance_time', 'day') # Show name, performance time, and day in the admin
-    list_filter = ('day',) # Side filter for days
+    list_display = ('name', 'performance_time', 'genre', 'day') # Show name, performance time, genre, and day in the admin
+    list_filter = ('day', 'genre') # Side filter for days and genres
     ordering = ('day', 'performance_time')
