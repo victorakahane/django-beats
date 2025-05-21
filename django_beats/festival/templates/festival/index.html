@@ -21,7 +21,12 @@
                     {% for performance in day.artists.all %}
                         <div class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <strong>{{ performance.name }}</strong> <small class="text-muted">({{ performance.genre }})</small>
+                                {% if performance.photo %}
+                                    <img src="{{ performance.photo.url }}" alt="{{ performance.name }}" class="rounded-circle me-2" width="50" height="50">
+                                {% else %}
+                                    <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="{{ performance.name }}" class="rounded-circle me-2" width="50" height="50">
+                                {% endif %}
+                                <strong>{{ performance.name }}</strong> <small class="text-muted">({{ performance.get_genre_display }})</small>
                             </div>
                             <span class="badge bg-primary rounded-pill">{{ performance.performance_time|time:"H:i" }}</span>
                         </div>

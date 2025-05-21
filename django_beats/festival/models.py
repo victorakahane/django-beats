@@ -1,4 +1,13 @@
 from django.db import models
+import time
+import os
+
+def artist_photo_path(instance, filename: str):
+    """
+    Generate the file path for artist photos.
+    """
+    filename = f'{int(time.time())}_{filename}'
+    return os.path.join('artist_photos', filename)
 
 class FestivalDay(models.Model):
     """
@@ -47,6 +56,7 @@ class Artist(models.Model):
     performance_time = models.TimeField() # Time of performance
     day = models.ForeignKey(FestivalDay, on_delete=models.CASCADE, related_name='artists') # Foreign key to FestivalDay
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default='POP') # Genre of the artist
+    photo = models.ImageField(upload_to=artist_photo_path, blank=True, null=True)
     
     class Meta:
         ordering = ['performance_time'] # Order by performance time
