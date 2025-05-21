@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Programação do Festival{% endblock %}
+
+{% block content %}
+    <!-- Banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Django Beats Festival 2025</h1>
+            <p class="lead text-white">Para quem vive vários estilos em um só som.</p>
+            <a href="#programacao" class="btn mt-3">Ver programação</a>
+        </div>
+    </section>
+
+    <div class="container my-5" id="programacao">
+        <header class="mb-4 text-center">
+            <h2 class="fw-bold">Programação</h2>
+            <p>Confira os artistas de cada dia</p>
+        </header>
+
+        {% for day in festival_days %}
+            <section class="festival-day mb-4">
+                <h3 class="mb-4">{{ day.date|date:"d \\d\\e F" }}</h3>
+                <div class="list-group">
+                    {% for artist in day.artists.all %}
+                        <div class="list-group-item artist-card d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                {% if artist.photo %}
+                                    <img src="{{ artist.photo.url }}" alt="{{ artist.name }}" class="rounded-circle me-3 artist-photo" width="60" height="60">
+                                {% else %}
+                                    <img src="{% static 'festival/default-artist.jpg' %}" alt="{{ artist.name }}" class="rounded-circle me-3 artist-photo" width="60" height="60">
+                                {% endif %}
+                                <div>
+                                    <h5 class="mb-1">{{ artist.name }}</h5>
+                                    <small>{{ artist.get_genre_display }}</small>
+                                </div>
+                            </div>
+                            <span class="badge badge-time rounded-pill px-3 py-2">{{ artist.performance_time|time:"H:i" }}</span>
+                        </div>
+                    {% empty %}
+                        <p>Nenhuma performance para este dia.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        {% empty %}
+            <p class="text-center">Nenhum dia de festival agendado.</p>
+        {% endfor %}
+
+        <footer class="mt-5">
+            <p>&copy; 2025 Django Beats Festival. Música com o &#128154; para todos os estilos.</p>
+        </footer>
+    </div>
+{% endblock %}

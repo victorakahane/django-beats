@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    background-color: #121212;
+    color: #f1f1f1;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+h1, h2, .hero-title {
+    font-family: 'Lilita One', cursive;
+    color: #44B78B;
+}
+
+.hero {
+    background: url("../festival/banner.jpg") center center/cover no-repeat;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+
+}
+
+.hero-content a {
+    background-color: #44B78B;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    color: #44B78B;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: #ccc;
+}
+
+.festival-day {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.artist-card {
+    background-color: #2a2a2a;
+    border: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 5px solid #44B78B;
+    color: #f1f1f1;
+}
+
+.artist-photo {
+    object-fit: cover;
+    border: 2px solid #44B78B;
+}
+
+.badge-time {
+    background-color: #44B78B;
+    color: #000;
+}
+
+footer {
+    margin-top: 60px;
+    text-align: center;
+    color: #666;
+}
